@@ -94,7 +94,6 @@ func (f *FormData) Do(client HttpClientable, req *http.Request) (*http.Response,
 	req.Header.Set("content-type", "multipart/form-data; boundary="+f.boundary)
 	req.ContentLength = contentLength
 
-	io.Pipe()
 	f.pipeOut, f.pipeIn = io.Pipe()
 
 	go func() {
