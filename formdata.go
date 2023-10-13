@@ -6,7 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"path"
+	"path/filepath"
 )
 
 type HttpClientable interface {
@@ -66,7 +66,7 @@ func (f *FormData) AddFileField(name string, contentType string, file *os.File) 
 		return err
 	}
 
-	basename := path.Base(file.Name())
+	basename := filepath.Base(file.Name())
 
 	header := "--" + f.boundary + "\r\n"
 	header += "Content-Disposition: form-data; name=\"" + name + "\"; filename=\"" + basename + "\"\r\n"
